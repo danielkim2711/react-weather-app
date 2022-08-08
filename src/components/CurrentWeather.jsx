@@ -1,14 +1,18 @@
+import landingImage from '../assets/images/landing.png';
+
 const CurrentWeather = ({ currentWeatherData }) => {
   return (
     <>
       {currentWeatherData ? (
         <>
-          <div className='weather-container'>
-            <h1>{currentWeatherData.name}</h1>
+          <div className='flex--column'>
+            <h1>
+              {currentWeatherData.name}, {currentWeatherData.sys.country}
+            </h1>
             <img
+              src={`icons/${currentWeatherData.weather[0].icon}.png`}
               alt='weather'
               className='weather-icon'
-              src={`icons/${currentWeatherData.weather[0].icon}.png`}
             />
             <p>{Math.round(currentWeatherData.main.temp)}°C</p>
             <p>{currentWeatherData.weather[0].description}</p>
@@ -18,7 +22,15 @@ const CurrentWeather = ({ currentWeatherData }) => {
           </div>
         </>
       ) : (
-        <h1>Please select the city</h1>
+        <div className='flex--column'>
+          <img src={landingImage} alt='landing' className='landing__image' />
+          <h1>
+            Weather <span className='landing__title'>App</span>
+          </h1>
+          <p className='landing__description'>
+            Find weather for cities at your fingertips!
+          </p>
+        </div>
       )}
     </>
   );

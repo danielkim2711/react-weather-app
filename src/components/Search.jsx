@@ -34,7 +34,7 @@ const Search = ({ onSearchChange }) => {
   return (
     <>
       <AsyncPaginate
-        placeholder='Please search for city'
+        placeholder='Search a city'
         debounceTimeout={1000}
         value={searchCity}
         onChange={handleChange}
