@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Search from './components/Search';
+import CurrentWeather from './components/CurrentWeather';
 
 const OPEN_WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 const OPEN_WEATHER_API_URL = process.env.REACT_APP_OPEN_WEATHER_API_URL;
 
 function App() {
-  const [currentWeather, setCurrentWeather] = useState(null);
+  const [currentWeatherData, setCurrentWeatherData] = useState(null);
 
   const handleSearchChange = async (searchData) => {
     const [lat, lon] = searchData.value.split(' ');
@@ -17,11 +18,13 @@ function App() {
     const data = await response.json();
 
     console.log(data);
+    setCurrentWeatherData(data);
   };
 
   return (
     <div className='container'>
       <Search onSearchChange={handleSearchChange} />
+      <CurrentWeather currentWeatherData={currentWeatherData} />
     </div>
   );
 }
