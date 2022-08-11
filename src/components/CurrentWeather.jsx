@@ -19,13 +19,18 @@ const CurrentWeather = ({ currentWeatherData }) => {
               className='weather__icon'
             />
             <p className='weather__description'>
-              {`${
-                weatherDescription1.charAt(0).toUpperCase() +
-                weatherDescription1.slice(1)
-              } ${
-                weatherDescription2.charAt(0).toUpperCase() +
-                weatherDescription2.slice(1)
-              }`}
+              {weatherDescription1 && weatherDescription2
+                ? `${
+                    weatherDescription1.charAt(0).toUpperCase() +
+                    weatherDescription1.slice(1)
+                  } ${
+                    weatherDescription2.charAt(0).toUpperCase() +
+                    weatherDescription2.slice(1)
+                  }`
+                : currentWeatherData.weather[0].description
+                    .charAt(0)
+                    .toUpperCase() +
+                  currentWeatherData.weather[0].description.slice(1)}
             </p>
             <p className='weather__temperature'>
               {Math.round(currentWeatherData.main.temp)}°C
